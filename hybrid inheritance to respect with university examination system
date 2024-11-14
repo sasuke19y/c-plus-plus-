@@ -1,0 +1,68 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class Person {
+protected:
+    string name;
+    int ID;
+public:
+    void setPersonDetails(const string& name, int ID) {
+        this->name = name;
+        this->ID = ID;
+    }
+    void displayPersonDetails() {
+        cout << "Name: " << name << endl;
+        cout << "ID: " << ID << endl;
+    }
+};
+class Exam : virtual public Person {
+protected:
+    string subject;
+    float marks;
+public:
+    void setExamDetails(const string& subject, float marks) {
+        this->subject = subject;
+        this->marks = marks;
+    }
+    void displayExamDetails() {
+        displayPersonDetails();
+        cout << "Subject: " << subject << endl;
+        cout << "Marks: " << marks << endl;
+    }
+};
+class Sports : virtual public Person {
+protected:
+    float sportsScore;
+public:
+    void setSportsScore(float score) {
+        sportsScore = score;
+    }
+    void displaySportsScore() {
+        cout << "Sports Score: " << sportsScore << endl;
+    }
+};
+class Result : public Exam, public Sports {
+private:
+    float totalScore;
+public:
+    void calculateTotalScore() {
+        totalScore = marks + sportsScore;
+    }
+    void displayResult() {
+        cout << "Final Result:" << endl;
+        Exam::displayExamDetails();
+        displaySportsScore();
+        cout << "Total Score: " << totalScore << endl;
+    }
+};
+int main() {
+    Result studentResult;
+    studentResult.setPersonDetails("ROHIT", 00010455);
+    studentResult.setExamDetails("Mathematics", 45.5);
+    studentResult.setSportsScore(10);
+    studentResult.calculateTotalScore();
+    cout << "University Examination System:" << endl;
+    studentResult.displayResult();
+
+    return 0;
+}
