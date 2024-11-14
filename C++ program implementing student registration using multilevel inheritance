@@ -1,0 +1,71 @@
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Person {
+protected:
+    string name;
+    int age;
+
+public:
+    void setPersonDetails(const string& name, int age) {
+        this->name = name;
+        this->age = age;
+    }
+
+    void displayPersonDetails() {
+        cout << "Name: " << name << endl;
+        cout << "Age: " << age << endl;
+    }
+};
+
+class Student : public Person {
+protected:
+    int rollNumber;
+    string course;
+
+public:
+    void setStudentDetails(int rollNumber, const string& course) {
+        this->rollNumber = rollNumber;
+        this->course = course;
+    }
+
+    void displayStudentDetails() {
+        displayPersonDetails();
+        cout << "Roll Number: " << rollNumber << endl;
+        cout << "Course: " << course << endl;
+    }
+};
+
+class RegisteredStudent : public Student {
+private:
+    string registrationID;
+    string registrationDate;
+
+public:
+    void setRegistrationDetails(const string& registrationID, const string& registrationDate) {
+        this->registrationID = registrationID;
+        this->registrationDate = registrationDate;
+    }
+
+    void displayRegistrationDetails() {
+        displayStudentDetails();
+        cout << "Registration ID: " << registrationID << endl;
+        cout << "Registration Date: " << registrationDate << endl;
+    }
+};
+
+int main() {
+    RegisteredStudent regStudent;
+
+    regStudent.setPersonDetails("Ayush", 20);
+    regStudent.setStudentDetails(101, "Computer Science");
+    regStudent.setRegistrationDetails("AU1234", "2023-11-13");
+
+    cout << "Student Registration Details:" << endl;
+    regStudent.displayRegistrationDetails();
+
+    return 0;
+}
