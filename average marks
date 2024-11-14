@@ -1,0 +1,63 @@
+//Write a C++ program which will calculate the average of marks of 5 subjects and 5 students from 2 different sections
+
+#include<iostream>
+using namespace std;
+
+class student {
+    float marks[5];
+    float average;
+    
+    public:
+    
+    void inputmarks() {
+        float sum = 0;
+        for (int i = 0; i < 5; i++) {
+            cout << "Enter marks of subject " << i + 1 << ": ";
+            cin >> marks[i];
+            sum += marks[i];
+        }
+        average = sum / 5;
+    }
+
+    
+    friend class section;
+};
+
+class section {
+    student s[5];
+
+    public:
+    
+    void inputsection() {
+        for (int i = 0; i < 5; i++) {
+            cout << "Student " << i + 1 << ":" << endl;
+            s[i].inputmarks();
+        }
+    }
+
+    
+    void displayAverages() {
+        for (int i = 0; i < 5; i++) {
+            cout << "Student " << i + 1 << " average: " << s[i].average << endl;
+        }
+    }
+};
+
+int main() {
+    section sections[2];
+
+
+    for (int i = 0; i < 2; i++) {
+        cout << "Section " << i + 1 << ":" << endl;
+        sections[i].inputsection();
+    }
+
+    
+    for (int i = 0; i < 2; i++) {
+        cout << "Section " << i + 1 << " averages:" << endl;
+        sections[i].displayAverages();
+    }
+
+    return 0;
+}
+
