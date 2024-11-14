@@ -1,0 +1,49 @@
+//write a C++ program to implement default constructor,paramaterized,copy constructor,destructor,constructor with default argument
+
+#include<iostream>
+using namespace std;
+class Student {
+    string name;
+    int age;
+    float grade;
+public:
+Student(){
+    name="Abhi";
+    age=5;
+    grade=11.0;
+    cout<< "Default Constructor called!" <<endl;
+}
+Student(string n, int a, float g=0.0){
+    name=n;
+    age=a;
+    grade=g;
+    cout<<"Parameterized constructor called!" <<endl;
+}
+Student(const Student &s){
+    name=s.name;
+    age=s.age;
+    grade=s.grade;
+    cout<<"Copy constructor called!" <<endl;
+}
+~Student(){
+    cout<<"Destructor called for" <<name <<endl;
+}
+void display(){
+    cout<<"Name:" <<name <<", Age:"<<age<<", Grade:"<<grade<<endl;
+}
+};
+int main(){
+    Student student1;
+    student1.display();
+
+    Student student2("Rohit",20,51.5);
+    student2.display();
+
+    Student student3("Bobby",25,12.2);
+    student3.display();
+
+Student student4 =student2;
+student4.display();
+return 0;
+}
+    
